@@ -2,10 +2,12 @@ package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         DownloadTask task = new DownloadTask();
         task.execute("http://api.openweathermap.org/data/2.5/weather?q=" +editText.getText().toString()+ "&APPID=259cecf6481da40ac5e51af91e2b9317");
-        
+
+        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(editText.getWindowToken(),0);
     }
 
 
